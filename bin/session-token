@@ -6,7 +6,7 @@ use Session::Token;
 use Getopt::Long;
 
 my @opt_spec = (
-  ## Pass-through to constructor
+  ## Used by Session::Token constructor
 
   'alphabet=s',
   'entropy=i',
@@ -58,7 +58,7 @@ session-token - command-line script for generating session tokens
 
 =head1 DESCRIPTION
 
-This module came about because I have found myself frequently running the following command:
+This module came about because I found myself frequently running the following command:
 
     $ perl -MSession::Token -E 'say Session::Token->new->get'
     YwXYXGLMMnudk33MbClseQ
@@ -66,15 +66,17 @@ This module came about because I have found myself frequently running the follow
 Before I wrote L<Session::Token> I used to run the following command:
 
     $ openssl rand -base64 16
-    Lz953PUj6NTzmujW2wbwCw==
+    fjxhL/LmZEUQ+NCldQbHgA==
 
 They both perform essentially the same task however C<session-token> has various advantages:
 
-It is more flexible regarding the alphabet used since it supports any alphabet that L<Session::Token> does via the C<--alphabet> switch. Its default alphabet is the (IMO) nice base-62 versus C<openssl>'s base-64.
+It is more flexible regarding the alphabet used since it supports any alphabet that L<Session::Token> does via the C<--alphabet> switch. Its default alphabet is the (IMO) nice base-62 versus C<openssl rand>'s base-64.
 
-It can efficiently generate a large number of random tokens with the C<--num> switch. Calling C<openssl> for each token would fork a lot of process and open and read from C</dev/urandom> in each one.
+It can efficiently generate a large number of random tokens with the C<--num> switch. Calling C<openssl rand> for each token would fork a lot of processes and open and read from C</dev/urandom> in each one.
 
 If cross-platform determinism is required, the C<--seed> or C<--null-seed> switches are available and they don't require seed files or anything. Note that you should only use these switches for benchmarks or simulations and never for applications requiring secure randomness since the generated sequence of tokens will be the same for each run.
+
+C<openssl rand> does some weirdness with reading from/writing to the C<~/.rnd> file in your home directory as a potential entropy source/store. C<session-token> will always fail noisily if it can't read from C</dev/urandom>.
 
 Finally, C<session-token> is easier to remember and type don't you think?
 
