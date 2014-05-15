@@ -6,6 +6,7 @@ use ExtUtils::MakeMaker;
 my %args = (
     NAME => 'App::Session::Token',
     VERSION_FROM => 'lib/App/Session/Token.pm',
+    EXE_FILES => [ 'bin/session-token', ],
     PREREQ_PM => {
       'Session::Token' => 0,
     },
