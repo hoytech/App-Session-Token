@@ -1,0 +1,7 @@
+bin/session-token
+Changes
+lib/App/Session/Token.pm
+Makefile.PL
+MANIFEST
+MANIFEST.SKIP
+t/basic.t
