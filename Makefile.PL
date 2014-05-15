@@ -9,6 +9,7 @@ my %args = (
     EXE_FILES => [ 'bin/session-token', ],
     PREREQ_PM => {
       'Session::Token' => 0,
+      'Getopt::Long' => 0,
     },
     LIBS => [],
     DEFINE => '',
