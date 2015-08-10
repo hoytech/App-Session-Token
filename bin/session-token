@@ -16,6 +16,7 @@ my @opt_spec = (
   ## Special
 
   'num|n=i',
+  'help|h|?',
   'null-seed',
 );
 
@@ -24,6 +25,14 @@ my $opt = {
 };
 
 GetOptions($opt, @opt_spec) || die "GetOptions failed";
+
+
+if ($opt->{help}) {
+  require Pod::Perldoc;
+  @ARGV = ('-F', $0);
+  Pod::Perldoc->run();
+}
+
 
 $opt->{seed} = "\x00"x1024 if $opt->{'null-seed'};
 
