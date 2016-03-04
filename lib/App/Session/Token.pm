@@ -1,6 +1,6 @@
 package App::Session::Token;
 
-our $VERSION = '0.100';
+our $VERSION = '0.101';
 
 1;
 
@@ -30,6 +30,6 @@ Doug Hoyte, C<< <doug@hcsw.org> >>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2014 Doug Hoyte.
+Copyright 2014-2016 Doug Hoyte.
 
 This module is licensed under the same terms as perl itself.
