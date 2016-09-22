@@ -1,6 +1,6 @@
 package App::Session::Token;
 
-our $VERSION = '0.101';
+our $VERSION = '0.102';
 
 1;
 
